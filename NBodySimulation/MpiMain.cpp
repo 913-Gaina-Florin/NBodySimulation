@@ -62,10 +62,10 @@ int* MpiMain::convertVectorToArray(vector<Body> bodies)
 vector<Body> MpiMain::convertArrayToVector(int* array, int size)
 {
     vector<Body> bodies{};
+    int* buffer = new int[5];
 
     for (int i = 0; i < size; i += 5)
     {
-        int* buffer = new int[5];
         for (int j = 0; j < 5; j++)
         {
             buffer[j] = array[i + j];
@@ -218,7 +218,7 @@ void MpiMain::executeMain(int argc, char** argv)
 
             cout << "CALLED DISPLAY \n";
             window.display();
-            multipleStepsMPIMasterThread(std::ref(bodies), 500, size);
+            multipleStepsMPIMasterThread(std::ref(bodies), 5, size);
         }
     }
     else
